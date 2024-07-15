@@ -1,0 +1,28 @@
+[package]
+name = "user-stat-svc"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+prost = { workspace = true }
+prost-build = { workspace = true }
+prost-types = { workspace = true }
+tonic = { workspace = true }
+tokio = { workspace = true }
+sqlx = { workspace = true }
+serde = { workspace = true }
+chrono = { workspace = true }
+rand = "0.8.5"
+
+[build-dependencies]
+anyhow = { workspace = true }
+prost-build = { workspace = true }
+tonic-build = { workspace = true }
+
+[dev-dependencies]
+fake = { version = "2.9.2", features = ["derive", "chrono"] }
+nanoid = "0.4.0"

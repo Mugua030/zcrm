@@ -1,0 +1,28 @@
+[package]
+name = "crm"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "client"
+path = "src/client.rs"
+
+[[bin]]
+name = "server"
+path = "src/server.rs"
+
+[dependencies]
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+prost = { workspace = true }
+prost-build = { workspace = true }
+prost-types = { workspace = true }
+tonic = { workspace = true }
+tokio = { workspace = true }
+
+[build-dependencies]
+anyhow = { workspace = true }
+prost-build = { workspace = true }
+tonic-build = { workspace = true }

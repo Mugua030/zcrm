@@ -1,5 +1,7 @@
 ##### CRM
-Activate silent customer by content like sms or email...
+Activate silent customer thought content such as SMS or email...
 
 
-##### test2
+##### How to use
+> 1.user-stat-svc
+>    gen data for dev test:  cargo run --example gen_data
