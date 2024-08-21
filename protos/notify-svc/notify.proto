@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package notify;
+
+import "google/protobuf/timestamp.proto";
+
+service Notify {
+    rpc SendMsg(stream SendRequest) returns (stream SendResponse) {}
+}
+
+message EmailMsg {
+    string msg_id = 1;
+    string subject = 2;
+    string sender = 3;
+    repeated string recipients = 4;
+    string body = 5;
+}
+
+message SmsMsg {
+    string msg_id = 1;
+    string sender = 2;
+    repeated string recipients = 3;
+    string body = 4;
+}
+
+message InAppMsg {
+    string msg_id = 1;
+    string device_id = 2;
+    string title = 3;
+    string body = 4;
+}
+
+message SendRequest {
+    oneof msg {
+        EmailMsg email = 1;
+        SmsMsg sms = 2;
+        InAppMsg in_app_msg = 3;
+    }
+}
+
+message SendResponse {
+    string msg_id = 1;
+    google.protobuf.Timestamp timestamp = 2;
+}

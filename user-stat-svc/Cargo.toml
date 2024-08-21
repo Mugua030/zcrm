@@ -15,18 +15,18 @@ tokio = { workspace = true }
 sqlx = { workspace = true }
 serde = { workspace = true }
 chrono = { workspace = true }
-rand = "0.8.5"
+rand = { worksapce = true }
 serde_yaml = { workspace = true }
-futures = "0.3.30"
+futures = { worksapce = true }
 itertools = { workspace = true }
-derive_builder = "0.20.0"
+derive_builder = { worksapce = true }
 
 # for build proto
 
 [build-dependencies]
 anyhow = { workspace = true }
 prost-build = { workspace = true }
-proto-builder-trait = "0.6.1"
+proto-builder-trait = { worksapce = true }
 tonic-build = { workspace = true }
 
 [dev-dependencies]

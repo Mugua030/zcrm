@@ -1,0 +1,7 @@
+server:
+  port: 5002
+auth:
+  pk: |
+    -----BEGIN PUBLIC KEY-----
+    test pk
+    -----END PUBLIC KEY-----
