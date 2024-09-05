@@ -42,6 +42,10 @@ fn main() -> Result<()> {
             &["QueryRequest.ids"],
             &[r#"#[builder(setter(each(name="id", into)))]"#],
         )
+        .with_field_attributes(
+            &["QueryRequest.limit"],
+            &[r#"#[builder(setter(into, strip_option))]"#],
+        )
         .compile(
             &[
                 "../protos/user-stat-svc/message.proto",

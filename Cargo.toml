@@ -11,6 +11,7 @@ derive_builder = "0.20.0"
 prost = "0.13.1"
 rand = "0.8.5"
 prost-build = "0.13.1"
+#prost-build = "0.12.4"
 prost-types = "0.13.1"
 tonic = { version = "0.12.1", features = ["zstd", "tls"] }
 tonic-build = "0.11.0"
@@ -27,3 +28,4 @@ proto-builder-trait = "0.6.1"
 
 # current pro
 notify-svc = { path = "notify-svc" }
+user-stat-svc = { path = "user-stat-svc" }

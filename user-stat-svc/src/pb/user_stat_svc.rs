@@ -24,6 +24,9 @@ pub struct QueryRequest {
     #[prost(map = "string, message", tag = "2")]
     #[builder(setter(each(name = "id", into)))]
     pub ids: ::std::collections::HashMap<::prost::alloc::string::String, IdQuery>,
+    #[prost(int32, optional, tag = "3")]
+    #[builder(setter(into, strip_option))]
+    pub limit: ::core::option::Option<i32>,
 }
 #[derive(derive_builder::Builder)]
 #[builder(setter(into, strip_option), default)]

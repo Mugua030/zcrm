@@ -1,4 +1,6 @@
 mod user_stats_svc;
+pub mod user_stats_svc_test;
+
 use crate::config::*;
 
 use sqlx::PgPool;

@@ -27,12 +27,17 @@ impl UserStatsService {
 
         //sql.push_str(" AND ");
         sql.push_str(&id_conditions);
-        println!("SQL: {}", sql);
+
+        // limit
+        if let Some(limit) = query.limit {
+            sql.push_str(&format!(" LIMIT {}", limit));
+        }
 
         self.raw_query(RawQueryRequest { query: sql }).await
     }
 
     pub async fn raw_query(&self, rawreq: RawQueryRequest) -> ServiceResult<ResponseStream> {
+        println!("Q-SQL: {:?}", &rawreq.query);
         let Ok(ret) = sqlx::query_as::<_, User>(&rawreq.query)
             .fetch_all(&self.inner.pool)
             .await
@@ -42,7 +47,6 @@ impl UserStatsService {
                 rawreq.query
             )));
         };
-
         // success
         Ok(Response::new(Box::pin(futures::stream::iter(
             ret.into_iter().map(Ok),

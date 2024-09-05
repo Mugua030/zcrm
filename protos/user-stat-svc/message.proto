@@ -12,6 +12,7 @@ message User {
 message QueryRequest {
     map<string, TimeQuery> timestamps = 1;
     map<string, IdQuery> ids = 2;
+    optional int32 limit = 3;
 }
 
 message RawQueryRequest {
