@@ -44,7 +44,7 @@ mod tests {
     fn it_work() {
         let conf = AppConfig::load().expect("load config fail");
         println!("config-port: {}", conf.server.port);
-        assert_eq!(conf.server.port, 5001);
+        assert_eq!(conf.server.port, 50001);
 
         println!("auth-info: {}", conf.auth.pk);
     }

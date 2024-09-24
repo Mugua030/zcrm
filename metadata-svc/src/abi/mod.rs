@@ -1,4 +1,5 @@
-use futures::{Stream, StreamExt};
+use futures::{stream, Stream, StreamExt};
+use std::collections::HashSet;
 
 use crate::{
     metadata_svc::{MetadataService, ResponseStream, ServiceResult},
@@ -70,6 +71,21 @@ impl Publisher {
             name: Name().fake(),
             avatar: "https://placehold.co/500x500".to_string(),
         }
+    }
+}
+
+// tpl
+pub struct Tpl<'a>(pub &'a [Content]);
+impl<'a> Tpl<'a> {
+    pub fn to_body(&self) -> String {
+        format!("Tpl: {:?}", self.0)
+    }
+}
+
+impl MaterializeRequest {
+    pub fn new_with_ids(ids: &[u32]) -> impl Stream<Item = Self> {
+        let reqs: HashSet<_> = ids.iter().map(|id| Self { id: *id }).collect();
+        stream::iter(reqs)
     }
 }
 

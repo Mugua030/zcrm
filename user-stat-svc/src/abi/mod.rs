@@ -3,7 +3,7 @@ use itertools::Itertools;
 use prost_types::Timestamp;
 use tonic::{Response, Status};
 
-use crate::pb::{QueryRequest, RawQueryRequest, User};
+use crate::pb::{QueryRequest, QueryRequestBuilder, RawQueryRequest, TimeQuery, User};
 
 use crate::services::{ResponseStream, ServiceResult, UserStatsService};
 
@@ -86,6 +86,28 @@ fn ids_query(name: &str, ids: Vec<u32>) -> String {
     }
 
     format!("array{:?} <@ {}", ids, name)
+}
+
+impl QueryRequest {
+    pub fn new_with_dt(name: &str, lower: DateTime<Utc>, upper: DateTime<Utc>) -> Self {
+        let ts = Timestamp {
+            seconds: lower.timestamp(),
+            nanos: 0,
+        };
+        let ts1 = Timestamp {
+            seconds: upper.timestamp(),
+            nanos: 0,
+        };
+        let tq = TimeQuery {
+            lower: Some(ts),
+            upper: Some(ts1),
+        };
+
+        QueryRequestBuilder::default()
+            .timestamp((name.to_string(), tq))
+            .build()
+            .expect("")
+    }
 }
 
 #[cfg(test)]

@@ -24,3 +24,19 @@ service UserService {
     rpc GetUser(GetUserRequest) returns (User) {}
     rpc CreateUser(CreateUserRequest) returns (User) {}
 }
+
+// crm
+message WelcomeRequest {
+    string id = 1;
+    uint32 interval = 2;
+    repeated uint32 content_ids = 3;
+}
+
+message WelcomeResponse {
+    string id = 1;
+}
+
+service crm {
+    // welcome msg when customer has registered x days
+    rpc Welcome(WelcomeRequest) returns (WelcomeResponse);
+}

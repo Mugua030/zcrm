@@ -315,13 +315,26 @@ name = "crm"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "chrono",
+ "derive_builder",
+ "futures",
+ "metadata-svc",
+ "notify-svc",
  "prost 0.13.1",
  "prost-build 0.13.1",
  "prost-types 0.13.1",
+ "proto-builder-trait",
+ "serde",
+ "serde_yaml",
  "thiserror",
  "tokio",
+ "tokio-stream",
  "tonic",
  "tonic-build",
+ "tracing",
+ "tracing-subscriber",
+ "user-stat-svc",
+ "uuid",
 ]
 
 [[package]]
@@ -1087,7 +1100,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 
 [[package]]
-name = "metadata_svc"
+name = "metadata-svc"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -1176,6 +1189,7 @@ dependencies = [
  "fake",
  "futures",
  "itertools 0.13.0",
+ "metadata-svc",
  "nanoid",
  "notify-svc",
  "prost 0.13.1",

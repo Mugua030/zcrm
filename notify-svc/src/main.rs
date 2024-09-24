@@ -11,7 +11,7 @@ async fn main() -> Result<()> {
 
     let config = AppConfig::load().expect("Failed to load config");
     let port = config.server.port;
-    let addr = format!("[::1]:{}", port).parse().unwrap();
+    let addr = format!("0.0.0.0:{}", port).parse().unwrap();
     info!("notify listening on {}", addr);
 
     let svc = NotifyService::new(config).into_server();

@@ -15,14 +15,28 @@ path = "src/server.rs"
 
 [dependencies]
 anyhow = { workspace = true }
+chrono = { workspace = true }
 thiserror = { workspace = true }
 prost = { workspace = true }
 prost-build = { workspace = true }
 prost-types = { workspace = true }
 tonic = { workspace = true }
 tokio = { workspace = true }
+tokio-stream = { workspace = true }
+derive_builder = { workspace = true }
+futures = { workspace = true }
+serde = { workspace = true }
+serde_yaml = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+metadata-svc = { workspace = true }
+notify-svc = { workspace = true }
+user-stat-svc = { workspace = true }
+uuid = { version = "1.8.0", features = ["v4"]}
 
 [build-dependencies]
 anyhow = { workspace = true }
 prost-build = { workspace = true }
 tonic-build = { workspace = true }
+proto-builder-trait = { workspace = true }

@@ -29,3 +29,4 @@ proto-builder-trait = "0.6.1"
 # current pro
 notify-svc = { path = "notify-svc" }
 user-stat-svc = { path = "user-stat-svc" }
+metadata-svc = { path = "metadata-svc" }

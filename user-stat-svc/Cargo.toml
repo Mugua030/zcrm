@@ -19,18 +19,18 @@ sqlx = { workspace = true }
 sqlx-db-tester = { version = "0.4.2", optional = true }
 serde = { workspace = true }
 chrono = { workspace = true }
-rand = { worksapce = true }
+rand = { workspace = true }
 serde_yaml = { workspace = true }
-futures = { worksapce = true }
+futures = { workspace = true }
 itertools = { workspace = true }
-derive_builder = { worksapce = true }
+derive_builder = { workspace = true }
 
 # for build proto
 
 [build-dependencies]
 anyhow = { workspace = true }
 prost-build = { workspace = true }
-proto-builder-trait = { worksapce = true }
+proto-builder-trait = { workspace = true }
 tonic-build = { workspace = true }
 
 [dev-dependencies]

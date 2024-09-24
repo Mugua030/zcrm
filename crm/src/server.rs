@@ -1,9 +1,10 @@
 use anyhow::Result;
-use crm::pb::{
-    user_service_server::{UserService, UserServiceServer},
-    CreateUserRequest, GetUserRequest, User,
-};
+use crm::pb::{user_service_server::UserService, CreateUserRequest, GetUserRequest, User};
+
+use crm::{AppConfig, CrmService};
 use tonic::{async_trait, transport::Server, Request, Response, Status};
+use tracing::{info, level_filters::LevelFilter};
+use tracing_subscriber::{fmt::Layer, layer::SubscriberExt, util::SubscriberInitExt, Layer as _};
 
 #[derive(Default)]
 pub struct UserServer {}
@@ -29,6 +30,10 @@ impl UserService for UserServer {
 
 #[tokio::main]
 async fn main() -> Result<()> {
+    let layer = Layer::new().with_filter(LevelFilter::INFO);
+    tracing_subscriber::registry().with(layer).init();
+    // user server test
+    /*
     let addr = "[::1]:50051".parse().unwrap();
     let svc = UserServer::default();
 
@@ -38,6 +43,17 @@ async fn main() -> Result<()> {
         .add_service(UserServiceServer::new(svc))
         .serve(addr)
         .await?;
+
+    Ok(())
+    */
+
+    // crm service
+    let config = AppConfig::load().expect("Failed to load config");
+    let port = config.server.port;
+    let addr = format!("0.0.0.0:{}", port).parse().unwrap();
+    info!("crm service listening on {}", addr);
+    let svc = CrmService::try_new(config).await?.into_server();
+    Server::builder().add_service(svc).serve(addr).await?;
 
     Ok(())
 }

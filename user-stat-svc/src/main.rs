@@ -9,7 +9,7 @@ async fn main() -> Result<()> {
 
     // tonic server (grpc sever)
 
-    let addr = format!("[::1]:{}", conf.server.port).parse().unwrap();
+    let addr = format!("0.0.0.0:{}", conf.server.port).parse().unwrap();
     let svc = UserStatsService::new(conf).await.into_server();
     Server::builder().add_service(svc).serve(addr).await?;
 

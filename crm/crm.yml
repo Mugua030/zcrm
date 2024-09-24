@@ -1,0 +1,10 @@
+server:
+  port: 50000
+  sender_email: zcrm@zcrm.org
+  user_stats_svc: http://localhost:50001
+  metadata_svc: http://localhost:50002
+  notify_svc: http://localhost:50003
+auth:
+  pk: |
+    -----BEGIN PUBLIC KEY-----
+    -----END PUBLIC KEY-----

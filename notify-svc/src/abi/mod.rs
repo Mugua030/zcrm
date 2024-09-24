@@ -4,15 +4,17 @@ mod sms;
 
 use chrono::Utc;
 use futures::{Stream, StreamExt};
+use metadata_svc::{pb::Content, Tpl};
 use prost_types::Timestamp;
 use std::{ops::Deref, sync::Arc, time::Duration};
 use tokio::{sync::mpsc, time::sleep};
 use tokio_stream::wrappers::ReceiverStream;
 use tonic::{Response, Status};
 use tracing::{info, warn};
+use uuid::Uuid;
 
 use crate::{
-    pb::{notify_server::NotifyServer, send_request::Msg, SendRequest, SendResponse},
+    pb::{notify_server::NotifyServer, send_request::Msg, EmailMsg, SendRequest, SendResponse},
     AppConfig, NotifyService, NotifyServiceInner, ResponseStream, ServiceResult,
 };
 
@@ -38,14 +40,19 @@ impl NotifyService {
         &self,
         mut stm: impl Stream<Item = Result<SendRequest, Status>> + Send + 'static + Unpin,
     ) -> ServiceResult<ResponseStream> {
+        info!("[NotifyService] send running - begin");
         let (tx, rx) = mpsc::channel(CHANNEL_SIZE);
         let ntf = self.clone();
 
         tokio::spawn(async move {
             while let Some(Ok(req)) = stm.next().await {
+                info!("[NotifyService.spawn] req {:?}", &req);
                 let ntf_clone = ntf.clone();
                 let res = match req.msg {
-                    Some(Msg::Email(email)) => email.send(ntf_clone).await,
+                    Some(Msg::Email(email)) => {
+                        info!("sended-msg: {:?}", &email);
+                        email.send(ntf_clone).await
+                    }
                     Some(Msg::Sms(sms)) => sms.send(ntf_clone).await,
                     Some(Msg::InAppMsg(in_app)) => in_app.send(ntf_clone).await,
                     None => {
@@ -68,6 +75,27 @@ impl Deref for NotifyService {
         &self.inner
     }
 }
+
+impl SendRequest {
+    pub fn new(
+        subject: String,
+        sender: String,
+        recipients: &[String],
+        contents: &[Content],
+    ) -> Self {
+        let tpl = Tpl(contents);
+        let msg = Msg::Email(EmailMsg {
+            msg_id: Uuid::new_v4().to_string(),
+            subject,
+            sender,
+            recipients: recipients.to_vec(),
+            body: tpl.to_body(),
+        });
+
+        SendRequest { msg: Some(msg) }
+    }
+}
+
 fn dummy_send() -> mpsc::Sender<Msg> {
     let (tx, mut rx) = mpsc::channel(CHANNEL_SIZE * 100);
     tokio::spawn(async move {

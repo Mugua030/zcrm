@@ -4,16 +4,18 @@ use crate::{
     NotifyService,
 };
 use tonic::Status;
-use tracing::warn;
+use tracing::{info, warn};
 
 impl Sender for EmailMsg {
     async fn send(self, svc: NotifyService) -> Result<SendResponse, Status> {
+        println!("[email-sender] send run ...");
         let msg_id = self.msg_id.clone();
         svc.sender.send(Msg::Email(self)).await.map_err(|e| {
             warn!("Failed to send msg: {:?}", e);
             Status::internal("Failed to send msg")
         })?;
 
+        info!("[email-sender] msg_id: {:?}", &msg_id);
         Ok(SendResponse {
             msg_id,
             timestamp: Some(to_ts()),
