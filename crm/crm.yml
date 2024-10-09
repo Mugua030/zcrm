@@ -4,7 +4,69 @@ server:
   user_stats_svc: http://localhost:50001
   metadata_svc: http://localhost:50002
   notify_svc: http://localhost:50003
+  tls:
+    cert: |
+      -----BEGIN CERTIFICATE-----
+      MIIEUjCCArqgAwIBAgIQXKs5kRmqOr9k8+RjmmQn0TANBgkqhkiG9w0BAQsFADBz
+      MR4wHAYDVQQKExVta2NlcnQgZGV2ZWxvcG1lbnQgQ0ExJDAiBgNVBAsMG21hcnRp
+      bkBtYXJ0aW4tT3B0aVBsZXgtNzA5MDErMCkGA1UEAwwibWtjZXJ0IG1hcnRpbkBt
+      YXJ0aW4tT3B0aVBsZXgtNzA5MDAeFw0yNDEwMDUxMDE3MzlaFw0yNzAxMDUxMDE3
+      MzlaME8xJzAlBgNVBAoTHm1rY2VydCBkZXZlbG9wbWVudCBjZXJ0aWZpY2F0ZTEk
+      MCIGA1UECwwbbWFydGluQG1hcnRpbi1PcHRpUGxleC03MDkwMIIBIjANBgkqhkiG
+      9w0BAQEFAAOCAQ8AMIIBCgKCAQEAumI9HWn/jnDGn4SKitrG3VE1KxrE8zAN8pvV
+      zdXX1NsdUh5+c5pyNk5xhPwQVeNfMSqHFtfAu3Wj/Fw1lOGjjlhbOVY4/Ik9ltOT
+      0s3QoNjNJm9LdcQAhz+oUAf48rc3sIPH8sveqSerzyWJTvl/prBIg7dIcRQnzFQJ
+      Y9bG4irjli1PRGljweIsXn7j5yyFOzDTC2TFuTHnYV0ja14UMrcsvh5mXW1bbQEx
+      3VKEXyPKMQaGLCIR0ngIXQwcJRdfjceF4WuwjVodvDqrF49b3+Th+7cT73mqNeI/
+      /IG8MwhrjAXIgAHCNNbc0bsdgXZzAtC53fwl47RmYHmXiaEQ3wIDAQABo4GFMIGC
+      MA4GA1UdDwEB/wQEAwIFoDATBgNVHSUEDDAKBggrBgEFBQcDATAfBgNVHSMEGDAW
+      gBT0VgmSvU0bhAhEwTFAQw/p0oub0jA6BgNVHREEMzAxggwqLm1jb3Ntb3MuY26C
+      CWxvY2FsaG9zdIcEfwAAAYcQAAAAAAAAAAAAAAAAAAAAATANBgkqhkiG9w0BAQsF
+      AAOCAYEAquesEJgDzIIfO9cONkhtDpuqnhojJqLPdyNOHyxFe16doJcrfk3eVwqz
+      M6tuIuZObTUMIYoWgmq+Gfe5EcL/DxWjJ2PFl7qcwHSIunkelInbVUsz985w8NeE
+      5vEORhZNAKVFW+Whh+gURSbtBRiW2SDDQoA/epQHjVT3Qt/Tp/LzZmsOWAHGVI96
+      tddLR1abAG7vaSapm0Rr409P/yb+HU/1CdZiaA5ETt7e9qeYztqKDtWR5uIPIlHC
+      fk1kZKWgj0WwOGhYHqihUHbhtetoKoGqMbIl8n1x6xL0eG9Gxer37QxWuREqw5sj
+      IG2d0VeLYY+M4/Z7SzKrNqw0DZQeCLbTYpFjNYCYPJQKe1dv1XxxRq7xXC7UxKWn
+      JUddpXleVK5/fhOHh+fkwd4W11niiGXj0+Spewduv7ow7AIg+p9pLHBsE9qBFHNC
+      Gd1B3n3VZg2vNJ23lIcntzn8Hp4leAYcXPdXWkY1ujTemdVliqpn4ZSeaSSBby1x
+      eW12VgHT
+      -----END CERTIFICATE-----
+    key: |
+      -----BEGIN PRIVATE KEY-----
+      MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC6Yj0daf+OcMaf
+      hIqK2sbdUTUrGsTzMA3ym9XN1dfU2x1SHn5zmnI2TnGE/BBV418xKocW18C7daP8
+      XDWU4aOOWFs5Vjj8iT2W05PSzdCg2M0mb0t1xACHP6hQB/jytzewg8fyy96pJ6vP
+      JYlO+X+msEiDt0hxFCfMVAlj1sbiKuOWLU9EaWPB4ixefuPnLIU7MNMLZMW5Medh
+      XSNrXhQytyy+HmZdbVttATHdUoRfI8oxBoYsIhHSeAhdDBwlF1+Nx4Xha7CNWh28
+      OqsXj1vf5OH7txPveao14j/8gbwzCGuMBciAAcI01tzRux2BdnMC0Lnd/CXjtGZg
+      eZeJoRDfAgMBAAECggEBAI+JbnWDl0r0MRLSOPu8hqAUlTSv9fMvE96+Aob1Y7VK
+      VadTUqDm1YRbHvOCR3ZNl5a+oLCH0abMb1C/FoikyJesFfzvGQ3rB2JraJFU7ZGh
+      xUQPO/bizmFaNd4EdcU+MoYextKGDOEKazcpOjh2zsbpRb8iXIixNAEYyu53jkzH
+      1gT04avKByu8isP0BK0hhhthxrvCyJ+O5K3Tw22gSeBNTPfg3ES0qHII9xrGofCK
+      WQexnACoEE4NbXfy4Uji8hGzDO3iM6gml7ZPCWCYF9llVHSYr6N9bEljpUCuA6ME
+      BStmAPIsJHQbLlckjS49UM2KifOAu9/1qFb7EOzmGCECgYEA9kSxNkhs1bh6d31M
+      xUFWgW11ZEkHsp2GMBD5J0+FA3F/CeyfUHZe8xjhh7EH1hnFsBA1u275cksskd/I
+      71EWDN+XNeekji6NsUuZJ+yRa0Y+l/Ez1uZ8xC4ABDBgmxRw7PDyuFQpM05Cm0F2
+      +ktjCQM4GYu5OBAxPU5/4qfYQ+8CgYEAwb+9dxX3zWe5d9u9Ois9S0/xE2vJzk07
+      31cfzX+In2CksLZ49m/McpddMKdyUQcIm1498+YLpp0hzVQw3PuBpn2SJbL2xRHy
+      tE8J83LOn7nrCfGcxp5AuwENQgolZgkc157/3j6Y9FgFa44HpQVCHmxOrlII5+3E
+      viJq4N+eUhECgYEArJCX6OS5Ns1tK3umpvZQyqLLxrkR5sxQ8i+Cl1Q2baJDFc40
+      GKrJf+joaC/ZwOIQT34cWLm7m6YnlhRM9b1JCT5H8+LcwTDH4vuJV5uCjrwLMmc3
+      HxglR0bAhi7sEt8w/iccvaNjt2rYa3hlCaB3xiH2Vpg88pcOGdp+7HEWrwsCgYAj
+      f+ZPM487641oELMTPWj1q6gYTt+jFTOrMGN7W6rEyQhj+IshXEqxlFpW19dyUT+a
+      eCIR1ky8Mn5HCO4LD2op/0gP8EKWyTsXHoRMPvTs/zu5jrOTENv7Z63uM722fGT0
+      fQWUyxNrcdVMZ7Gu4s/Ck0W3WwCWvlIWJGhA27g+gQKBgDu3/LF5bdwMiDIbwICS
+      fJNOwj2X/VOV9F0AxN7bapcOgyKONy5s+7rZUIFOFkEqEkTHD0uuuX2wk1grvzRZ
+      c488jgrV4020WRwU9s0x5MrQploVrsyMfpEuzW78gSstxMKrZsmKSgxEasmqHZQl
+      mwR1MiSeZ6nZhiMf8G0l6xQm
+      -----END PRIVATE KEY-----
 auth:
+  prk: |
+    -----BEGIN PRIVATE KEY-----
+    MC4CAQAwBQYDK2VwBCIEIDUkbOTpAWyPru6fnsCQdOT5CxznCnMCGT3Zywvv5KMT
+    -----END PRIVATE KEY-----
   pk: |
     -----BEGIN PUBLIC KEY-----
+    MCowBQYDK2VwAyEAoMiPHzr7xx4vTlpbLbu1EQd9W9UDuSyFVF0RiKFdUWQ=
     -----END PUBLIC KEY-----

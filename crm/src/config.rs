@@ -11,6 +11,7 @@ pub struct AppConfig {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthConfig {
     pub pk: String,
+    pub prk: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -20,6 +21,13 @@ pub struct ServerConfig {
     pub metadata_svc: String,
     pub user_stats_svc: String,
     pub notify_svc: String,
+    pub tls: Option<TlsConfig>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct TlsConfig {
+    pub cert: String,
+    pub key: String,
 }
 
 impl AppConfig {

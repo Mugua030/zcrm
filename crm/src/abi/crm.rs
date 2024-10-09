@@ -15,7 +15,7 @@ use std::time::SystemTime;
 use tokio::sync::mpsc;
 use tokio_stream::wrappers::ReceiverStream;
 use tonic::{Response, Status};
-use tracing::warn;
+use tracing::{info, warn};
 use user_stat_svc::pb::QueryRequest;
 
 impl User {
@@ -43,6 +43,7 @@ impl CrmService {
         let d2 = d1 + Duration::days(1);
         let query = QueryRequest::new_with_dt("created_at", d1, d2);
         let mut res_user_stats = self.user_stats.clone().query(query).await?.into_inner();
+        info!("Begin welcome...");
 
         // filter users that adapted
         let contents = self

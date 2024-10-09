@@ -1,8 +1,11 @@
+use std::mem;
+
 use anyhow::Result;
 use crm::pb::{user_service_server::UserService, CreateUserRequest, GetUserRequest, User};
 
 use crm::{AppConfig, CrmService};
-use tonic::{async_trait, transport::Server, Request, Response, Status};
+use tonic::transport::{Identity, Server, ServerTlsConfig};
+use tonic::{async_trait, Request, Response, Status};
 use tracing::{info, level_filters::LevelFilter};
 use tracing_subscriber::{fmt::Layer, layer::SubscriberExt, util::SubscriberInitExt, Layer as _};
 
@@ -48,12 +51,29 @@ async fn main() -> Result<()> {
     */
 
     // crm service
-    let config = AppConfig::load().expect("Failed to load config");
+    let mut config = AppConfig::load().expect("Failed to load config");
     let port = config.server.port;
     let addr = format!("0.0.0.0:{}", port).parse().unwrap();
     info!("crm service listening on {}", addr);
-    let svc = CrmService::try_new(config).await?.into_server();
-    Server::builder().add_service(svc).serve(addr).await?;
+
+    let tls = mem::take(&mut config.server.tls);
+    let svc = CrmService::try_new(config).await?.into_server()?;
+    info!("Begin TLS sever...");
+
+    // TLS
+    if let Some(tls) = tls {
+        println!("tls run...");
+        let identity = Identity::from_pem(tls.cert, tls.key);
+        Server::builder()
+            .tls_config(ServerTlsConfig::new().identity(identity))?
+            .add_service(svc)
+            .serve(addr)
+            .await?;
+    } else {
+        // No TLS
+        println!("no TLS run...");
+        Server::builder().add_service(svc).serve(addr).await?;
+    }
 
     Ok(())
 }

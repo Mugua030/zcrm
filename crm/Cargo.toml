@@ -34,6 +34,7 @@ metadata-svc = { workspace = true }
 notify-svc = { workspace = true }
 user-stat-svc = { workspace = true }
 uuid = { version = "1.8.0", features = ["v4"]}
+jwt-simple = "0.12.10"
 
 [build-dependencies]
 anyhow = { workspace = true }

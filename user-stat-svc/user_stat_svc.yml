@@ -4,5 +4,5 @@ server:
 auth:
   pk: |
     -----BEGIN PUBLIC KEY -----
-    abcd test 123333
+    MCowBQYDK2VwAyEAoMiPHzr7xx4vTlpbLbu1EQd9W9UDuSyFVF0RiKFdUWQ=
     -----END PUBLIC KEY-----

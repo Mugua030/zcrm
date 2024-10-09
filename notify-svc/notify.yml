@@ -3,5 +3,5 @@ server:
 auth:
   pk: |
     -----BEGIN PUBLIC KEY-----
-    test pk
+    MCowBQYDK2VwAyEAoMiPHzr7xx4vTlpbLbu1EQd9W9UDuSyFVF0RiKFdUWQ=
     -----END PUBLIC KEY-----
